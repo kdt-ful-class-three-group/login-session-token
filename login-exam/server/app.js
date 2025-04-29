@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+//경로
+const path = require('path')
+
 const app = express();
 const PORT = 8000;
 
@@ -11,7 +14,7 @@ app.use(cors());
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Server is running on port 8000');
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Login route
