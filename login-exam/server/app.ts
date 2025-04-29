@@ -28,6 +28,12 @@ app.post('/login',(req,res)=>{
   //받은 데이터
   const {id, password} = req.body
   console.log('데이터 확인 id:',id,'ps:',password)
+
+  //세션에 로그인 정보 저장
+  req.session.user = {id}
+
+  //요청 후
+  res.send(`<h1>${id}! 로그인 성공</h1> <div><button>로그아웃</button></div>`)
 })
 
 
