@@ -1,29 +1,30 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-const PORT = 8000;
+const PORT = 8010;
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Server is running on port 8000');
+app.get("/", (req, res) => {
+  res.send("Server is running on port 8000");
 });
 
 // Login route
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   // Simple validation logic
-  if (username === '' && password === '') {
-    res.json({ message: 'Login successful!' });
+  if (username === "" && password === "") {
+    res.json({ message: "Login successful!" });
   } else {
-    res.status(401).json({ message: 'Invalid credentials' });
+    res.status(401).json({ message: "Invalid credentials" });
   }
+  // res.send("tt");
 });
 
 // Start the server
