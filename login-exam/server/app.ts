@@ -2,6 +2,9 @@
 import express from 'express'
 import path from 'path'
 
+//세션
+import session from 'express-session'
+
 
 const app = express()
 // 미들웨어 설정
