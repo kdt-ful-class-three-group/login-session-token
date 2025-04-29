@@ -5,6 +5,11 @@ import path from 'path'
 
 const app = express()
 
+//get / index.html
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname,'index.html'))
+})
+
 
 // 미들웨어 설정
 app.use(express.json())
