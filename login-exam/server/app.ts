@@ -11,6 +11,13 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+//세션 설정
+app.use(session({
+  secret:'testSecret',
+  resave:false,
+  saveUninitialized:false
+}))
+
 //get / index.html
 app.get('/',(req,res)=>{
   res.sendFile(path.join(__dirname,'index.html'))
