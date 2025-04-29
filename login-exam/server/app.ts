@@ -6,6 +6,7 @@ import path from 'path'
 const app = express()
 // 미들웨어 설정
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 //get / index.html
 app.get('/',(req,res)=>{
