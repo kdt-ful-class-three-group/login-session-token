@@ -6,10 +6,37 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="/login" method="post">
-    <input type="text" placeholder="아이디">
-    <input type="password" placeholder="비밀번호">
-    <button type="submit">로그인</button>
-  </form>
+    <input type="text" placeholder="아이디" name="username">
+    <input type="password" placeholder="비밀번호" name="password">
+    <button>로그인</button>
+
+  <script>
+    const btn = document.querySelector('button');
+    const id = document.querySelectorAll('input')[0]
+    const pw = document.querySelectorAll('input')[1]
+
+    btn.addEventListener('click', () => {
+      fetch('/login', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username: id.value, password: pw.value}),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.message === 'Login successful!') {
+          // 로그인 성공 시 sessionStorage에 아이디 저장
+          sessionStorage.setItem('name', data.username);
+          console.log('아이디가 sessionStorage에 저장되었습니다.');
+          // 필요하다면 페이지 리디렉션 등 다른 동작 수행
+        } else {
+          alert('로그인 실패!');
+        }
+      })
+      .catch((err) => console.log(`${err} 에러발생`));
+    });
+  </script>
 </body>
 </html>
