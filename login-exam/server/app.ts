@@ -4,15 +4,22 @@ import path from 'path'
 
 
 const app = express()
+// 미들웨어 설정
+app.use(express.json())
 
 //get / index.html
 app.get('/',(req,res)=>{
   res.sendFile(path.join(__dirname,'index.html'))
 })
 
+//form태그 입력
+app.post('/login',(req,res)=>{
+  //받은 데이터
+  const {id, password} = req.body
+  console.log('데이터 확인 id:',id,'ps:',password)
+})
 
-// 미들웨어 설정
-app.use(express.json())
+
 
 // 포트설정
 app.listen(3010,()=>{
